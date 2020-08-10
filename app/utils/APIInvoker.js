@@ -36,7 +36,7 @@ class APIInvoker {
   };
 
   invoke = (url, okCallBack, failCallBack, params) => {
-    fetch(`https://minitwitterapi.reactiveprogramming.io${url}`, params)
+    fetch(`${configuration.api.host}${url}`, params)
       .then((response) => {
         if (info) {
           console.log("Invoke Response => ", response);
