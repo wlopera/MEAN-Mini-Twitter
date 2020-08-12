@@ -5,6 +5,8 @@ import { Route, Switch } from "react-router-dom";
 import Signup from "./Signup";
 import Login from "./Login";
 import TwitterDashboard from "./TwitterDashboard";
+import AuthRouter from "./AuthRouter";
+import ToolBar from "./ToolBar";
 
 class TwitterApp extends Component {
   constructor(props) {
@@ -51,9 +53,15 @@ class TwitterApp extends Component {
     }
     return (
       <>
+        <ToolBar profile={this.state.profile} />
         <div id="mainApp" className="animate fadeIn">
           <Switch>
-            <Route exact path="/" component={() => <TwitterDashboard profile={this.state.profile} />} />
+            <AuthRouter
+              isLoged={this.state.profile != null}
+              exact
+              path="/"
+              component={() => <TwitterDashboard profile={this.state.profile} />}
+            />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
           </Switch>
